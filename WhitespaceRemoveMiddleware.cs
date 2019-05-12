@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace NashrinCore.Site.Service
+namespace FoadAbd.MyMiddleware
 {
     public static class BuilderExtensions
     {
@@ -24,9 +24,7 @@ namespace NashrinCore.Site.Service
         }
 
         public async Task Invoke(HttpContext context)
-        {
-            //  var sw = new Stopwatch();
-            //  sw.Start();
+        { 
 
             using (var memoryStream = new MemoryStream())
             {
