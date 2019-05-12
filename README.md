@@ -6,8 +6,9 @@ Remove All whiteSpace from rendered html
 
 
 #usage:
-#in Startup.cs  
- app.UseWhitespaceRemoveMiddleware();
+in Startup.cs  
+
+app.UseWhitespaceRemoveMiddleware();
  
  
 
