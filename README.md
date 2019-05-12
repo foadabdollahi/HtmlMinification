@@ -1,11 +1,11 @@
 # WhitespaceRemoveMiddleware
-Asp.net Core White space remove from response
+Asp.net Core 2.x White space remove from response
 
 Remove All whiteSpace from rendered html
 
 
 
-#usage:
+# Usage:
 in Startup.cs  
 
 app.UseWhitespaceRemoveMiddleware();
