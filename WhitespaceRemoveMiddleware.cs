@@ -33,10 +33,10 @@ namespace FoadAbd.MyMiddleware
 
                 await _next(context);
 
-                var isHtml = context.Response.ContentType?.ToLower().Contains("text/html");
+                var isHtml = context.Response?.ContentType?.ToLower().Contains("text/html");
                 if (context.Response.StatusCode == 200 && isHtml.GetValueOrDefault())
                 {
-                    {
+                     
                         memoryStream.Seek(0, SeekOrigin.Begin);
                         using (var streamReader = new StreamReader(memoryStream))
                         {
@@ -48,7 +48,11 @@ namespace FoadAbd.MyMiddleware
                             await context.Response.WriteAsync(responseBody);
                              
                         }
-                    }
+                     
+                }
+                else
+                {
+                    context.Response.Body = bodyStream;
                 }
             }
         }
