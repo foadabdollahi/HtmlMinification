@@ -8,7 +8,10 @@ Remove All whiteSpace from rendered html
 ## Usage:
 in Startup.cs  
 
-app.UseWhitespaceRemoveMiddleware();
- 
+before  app.UseEndpoints( ...
+
+``
+app.UseHtmlMinification();
+``
  
 
