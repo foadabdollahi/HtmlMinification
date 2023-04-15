@@ -4,8 +4,31 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>HtmlMinification</Title>
+    <Authors>Foad Abdollahi</Authors>
+    <Description>HTML minification middleware is a process of removing unnecessary or redundant data from HTML without affecting how the resource is processed by the browser. </Description>
+    <PackageProjectUrl>https://github.com/foadabdollahi/HtmlMinification</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/foadabdollahi/HtmlMinification</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>HtmlMinification,whiteSpace,whiteSpaceRemover</PackageTags>
+    <PackageId>HtmlMinification</PackageId>
+    <PackageReleaseNotes>HTML minification middleware is a process of removing unnecessary or redundant data from HTML without affecting how the resource is processed by the browser. This can include removing code comments and formatting, removing unused code, using shorter variable and function names, and so on. Minifying HTML can help reduce the size of web pages, resulting in faster page load times and improved user experience.</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <FileVersion></FileVersion>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
 	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

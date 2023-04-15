@@ -1,0 +1,13 @@
+D:\Projects\HtmlMinification\bin\Release\net6.0\HtmlMinification.deps.json
+D:\Projects\HtmlMinification\bin\Release\net6.0\HtmlMinification.dll
+D:\Projects\HtmlMinification\bin\Release\net6.0\HtmlMinification.pdb
+D:\Projects\HtmlMinification\obj\Release\net6.0\HtmlMinification.csproj.AssemblyReference.cache
+D:\Projects\HtmlMinification\obj\Release\net6.0\HtmlMinification.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\HtmlMinification\obj\Release\net6.0\HtmlMinification.AssemblyInfoInputs.cache
+D:\Projects\HtmlMinification\obj\Release\net6.0\HtmlMinification.AssemblyInfo.cs
+D:\Projects\HtmlMinification\obj\Release\net6.0\HtmlMinification.csproj.CoreCompileInputs.cache
+D:\Projects\HtmlMinification\obj\Release\net6.0\HtmlMinification.dll
+D:\Projects\HtmlMinification\obj\Release\net6.0\refint\HtmlMinification.dll
+D:\Projects\HtmlMinification\obj\Release\net6.0\HtmlMinification.pdb
+D:\Projects\HtmlMinification\obj\Release\net6.0\ref\HtmlMinification.dll
+D:\Projects\HtmlMinification\bin\Release\net6.0\README.md
