@@ -1,8 +1,6 @@
-using System.IO;
+using Microsoft.AspNetCore.Http;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace HtmlMinification
 {
@@ -17,19 +15,19 @@ namespace HtmlMinification
 
         public async Task Invoke(HttpContext httpContext)
         {
-            var stream = context.Response.Body;
+            var stream = httpContext.Response.Body;
 
             try
             {
                 using var bodyBuffer = new MemoryStream();
-                context.Response.Body = bodyBuffer;
+                httpContext.Response.Body = bodyBuffer;
 
-                await _next(context);
+                await _next(httpContext);
 
                 bodyBuffer.Seek(0, SeekOrigin.Begin);
 
-                var isHtml = context.Response.ContentType?.ToLower().Contains("text/html") == true;
-                if (isHtml && context.Response.StatusCode == 200)
+                var isHtml = httpContext.Response.ContentType?.ToLower().Contains("text/html") == true;
+                if (isHtml && httpContext.Response.StatusCode == 200)
                 {
                     using var reader = new StreamReader(bodyBuffer);
                     var responseBody = await reader.ReadToEndAsync();
@@ -42,7 +40,7 @@ namespace HtmlMinification
                     memoryStream.Write(bytes, 0, bytes.Length);
                     memoryStream.Seek(0, SeekOrigin.Begin);
 
-                    context.Response.ContentLength = bytes.Length; //set new Response length
+                    httpContext.Response.ContentLength = bytes.Length; //set new Response length
                     await memoryStream.CopyToAsync(stream);
                 }
                 else
@@ -52,9 +50,8 @@ namespace HtmlMinification
             }
             finally
             {
-                context.Response.Body = stream;
+                httpContext.Response.Body = stream;
             }
-
         }
 
         private string Linarize(string html)
