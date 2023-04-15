@@ -17,30 +17,44 @@ namespace HtmlMinification
 
         public async Task Invoke(HttpContext httpContext)
         {
-            Stream originalBody = httpContext.Response.Body;
+            var stream = context.Response.Body;
 
             try
             {
-                await using (var memStream = new MemoryStream())
-                {
-                    httpContext.Response.Body = memStream;
-                    await _next.Invoke(httpContext);
+                using var bodyBuffer = new MemoryStream();
+                context.Response.Body = bodyBuffer;
 
-                    memStream.Position = 0;
-                    string responseBody = await new StreamReader(memStream).ReadToEndAsync();
+                await _next(context);
+
+                bodyBuffer.Seek(0, SeekOrigin.Begin);
+
+                var isHtml = context.Response.ContentType?.ToLower().Contains("text/html") == true;
+                if (isHtml && context.Response.StatusCode == 200)
+                {
+                    using var reader = new StreamReader(bodyBuffer);
+                    var responseBody = await reader.ReadToEndAsync();
 
                     responseBody = Linarize(responseBody);
-                    byte[] byteArray = Encoding.UTF8.GetBytes(responseBody);
 
-                    var newBody = new MemoryStream(byteArray);
+                    var bytes = Encoding.UTF8.GetBytes(responseBody);
 
-                    await newBody.CopyToAsync(originalBody);
+                    using var memoryStream = new MemoryStream(bytes);
+                    memoryStream.Write(bytes, 0, bytes.Length);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+
+                    context.Response.ContentLength = bytes.Length; //set new Response length
+                    await memoryStream.CopyToAsync(stream);
+                }
+                else
+                {
+                    await bodyBuffer.CopyToAsync(stream);
                 }
             }
             finally
             {
-                httpContext.Response.Body = originalBody;
+                context.Response.Body = stream;
             }
+
         }
 
         private string Linarize(string html)
