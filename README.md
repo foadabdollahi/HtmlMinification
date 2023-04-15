@@ -17,10 +17,8 @@ in Startup.cs Or Program.cs
 
 
 
-`app.UseHtmlMinification(); // <-- call it before  StaticFiles middleware
-`
-`
-app.UseStaticFiles();
-`
+    app.UseHtmlMinification(); // <-- call it before  StaticFiles middleware
+    app.UseStaticFiles();
+
 
 
